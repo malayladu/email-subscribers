@@ -31,7 +31,6 @@ class ES_Handle_Post_Notification {
 
 	public function prepare_post_data( $prepared_post, $request ) {
 		$this->is_rest_request = true;
-
 		return $prepared_post;
 	}
 

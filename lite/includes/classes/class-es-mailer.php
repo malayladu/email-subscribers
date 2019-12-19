@@ -559,7 +559,11 @@ if ( ! class_exists( 'ES_Mailer' ) ) {
 				$emails = array( $emails );
 			}
 
-			$this->email_id_map = ES()->contacts_db->get_email_id_map( (array) $emails );
+			if ( 0 === $campaign_id ) {
+				$this->email_id_map = ES()->contacts_db->get_email_id_map( (array) $emails );
+			} else {
+				$this->email_id_map = ES_DB_Sending_Queue::get_emails_id_map_by_campaign( $campaign_id, $emails );
+			}
 
 			foreach ( (array) $emails as $email ) {
 
@@ -1208,11 +1212,11 @@ if ( ! class_exists( 'ES_Mailer' ) ) {
 		}
 
 		/**
-         * Get max email send at once count
-         *
+		 * Get max email send at once count
+		 *
 		 * @return int
-         *
-         * @since 4.3.5
+		 *
+		 * @since 4.3.5
 		 */
 		public function get_max_email_send_at_once_count() {
 			$max_count = (int) ES_Common::get_ig_option( 'max_email_send_at_once', IG_ES_MAX_EMAIL_SEND_AT_ONCE );

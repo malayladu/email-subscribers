@@ -313,9 +313,16 @@ class ES_Import_Subscribers {
 			}
 			$i ++;
 		}
-		$results = array_keys( $results, max( $results ) );
 
-		return $results[0];
+		if ( count( $results ) > 0 ) {
+
+			$results = array_keys( $results, max( $results ) );
+
+			return $results[0];
+		}
+
+		return ',';
+
 	}
 
 }

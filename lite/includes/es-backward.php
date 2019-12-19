@@ -57,6 +57,7 @@ class es_cls_dbquery {
 			$optin_type = ( $optin_type === 'double_opt_in' ) ? 2 : 1;
 
 			$status = 'subscribed';
+
 			if ( $optin_type == 2 ) {
 				$status = 'unconfirmed';
 			}
